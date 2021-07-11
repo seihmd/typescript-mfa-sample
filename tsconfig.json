@@ -1,0 +1,32 @@
+{
+  "include": [
+    "src",
+    "types",
+    "tests"
+  ],
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "baseUrl": "./src",
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}
