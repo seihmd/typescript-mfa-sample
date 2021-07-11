@@ -13,7 +13,7 @@
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "start": "node src/index.js",
-    "start:dev": "nodemon --watch 'src' --exec 'npm run start'",
+    "start:dev": "nohup npm run build:watch & nodemon --watch 'src' --exec 'npm run start'",
     "lint": "eslint src/** --fix",
     "test": "jest"
   },
