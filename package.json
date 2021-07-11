@@ -11,10 +11,10 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -p tsconfig.json --watch",
     "start": "node src/index.js",
+    "start:dev": "nodemon --watch 'src' --exec 'npm run start'",
     "lint": "eslint src/** --fix",
-    "docker:build": "docker build -t mfa-sample .",
-    "docker:run": "docker run --init --rm --name mfa-sample -d -p 8000:8000 -t mfa-sample",
     "test": "jest"
   },
   "husky": {
@@ -44,6 +44,7 @@
     "eslint-plugin-jest": "^24.3.6",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
+    "nodemon": "^2.0.12",
     "prettier": "^2.3.0",
     "ts-jest": "^26.5.5",
     "tslib": "^2.1.0",

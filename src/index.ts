@@ -1,9 +1,16 @@
-import fastify from 'fastify';
+import fastify, { FastifyReply, FastifyRequest } from 'fastify';
+import { RouteShorthandMethod } from 'fastify/types/route';
+import { pingHandler } from './handlers/PingHandler';
 
 const server = fastify();
 
-server.get('/ping', async (request, reply) => {
-  return 'pong\n';
+const routes: [
+  string,
+  (request: FastifyRequest, reply: FastifyReply) => Promise<unknown>
+][] = [['/ping', pingHandler]];
+
+routes.forEach(([route, handler]) => {
+  server.get(route, handler);
 });
 
 server.listen(8000, '0.0.0.0', (err, address) => {
