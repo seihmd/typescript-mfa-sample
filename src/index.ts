@@ -1,17 +1,17 @@
 import fastify, { FastifyReply, FastifyRequest } from 'fastify';
-import { RouteShorthandMethod } from 'fastify/types/route';
-import { pingHandler } from './handlers/PingHandler';
+import { postSecretHandler } from './handlers/SecretHandler';
+import {
+  getRecoveryCodeHandler,
+  postRecoveryCodeHandler,
+} from './handlers/RecoveryCodeHandler';
+import { postOtpHandler } from './handlers/OtpHandler';
 
 const server = fastify();
 
-const routes: [
-  string,
-  (request: FastifyRequest, reply: FastifyReply) => Promise<unknown>
-][] = [['/ping', pingHandler]];
-
-routes.forEach(([route, handler]) => {
-  server.get(route, handler);
-});
+server.post('/secrets', postSecretHandler);
+server.get('/recovery_codes', getRecoveryCodeHandler);
+server.post('/recovery_codes', postRecoveryCodeHandler);
+server.post('/otps', postOtpHandler);
 
 server.listen(8000, '0.0.0.0', (err, address) => {
   if (err) {
