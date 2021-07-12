@@ -3,11 +3,18 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./app.Dockerfile
     command: npm run start:dev
     environment:
       NODE_ENV: development
     ports:
-      - '8000:8000'
+      - '8001:8001'
     volumes:
       - .:/usr/src/app
+
+  db:
+    build:
+      context: .
+      dockerfile: ./db.Dockerfile
+    ports:
+      - '8000:8000'
