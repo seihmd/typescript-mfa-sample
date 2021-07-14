@@ -1,4 +1,9 @@
 version: '3'
+
+networks:
+  isolation-network:
+    driver: bridge
+
 services:
   app:
     build:
@@ -7,10 +12,14 @@ services:
     command: npm run start:dev
     environment:
       NODE_ENV: development
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
     ports:
       - '8001:8001'
     volumes:
       - .:/usr/src/app
+    networks:
+      - isolation-network
 
   db:
     build:
@@ -18,3 +27,5 @@ services:
       dockerfile: ./db.Dockerfile
     ports:
       - '8000:8000'
+    networks:
+      - isolation-network
