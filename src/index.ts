@@ -1,17 +1,15 @@
 import fastify, { FastifyReply, FastifyRequest } from 'fastify';
-import { postSecretHandler } from './handlers/SecretHandler';
-import {
-  getRecoveryCodeHandler,
-  postRecoveryCodeHandler,
-} from './handlers/RecoveryCodeHandler';
-import { postOtpHandler } from './handlers/OtpHandler';
+import { InitializationHandler } from './handlers/InitializationHandler';
 
 const server = fastify();
 
-server.post('/secrets', postSecretHandler);
-server.get('/recovery_codes', getRecoveryCodeHandler);
-server.post('/recovery_codes', postRecoveryCodeHandler);
-server.post('/otps', postOtpHandler);
+InitializationHandler('/:userId', 'get', server);
+
+// server.post('/:userId/activate', ActivationHandler);
+// server.post('/:userId/verify', VerificationHandler);
+// server.get('/:userId/recovery_codes', GetRecoveryCodeHandler);
+// server.post('/:userId/recovery', RecoveryHandler);
+// server.post('/:userId/secrets', GetSecretHandler);
 
 server.listen(8001, '0.0.0.0', (err, address) => {
   if (err) {

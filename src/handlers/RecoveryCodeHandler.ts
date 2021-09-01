@@ -11,7 +11,7 @@ export const postRecoveryCodeHandler: (
   return 'postRecoveryCodeHandler\n';
 };
 
-export const getRecoveryCodeHandler: (
+export const GetRecoveryCodeHandler: (
   request: FastifyRequest,
   reply: FastifyReply
 ) => Promise<unknown> = async function (
